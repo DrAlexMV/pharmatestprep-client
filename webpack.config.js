@@ -3,14 +3,11 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const debug = require('debug')('app:webpack:config')
 
-const basePath = path.resolve(__dirname);
 
-console.log(path.join(basePath, "src/main.tsx"));
 module.exports = {
-    entry: path.join(basePath, "src/main.tsx"),
+    entry: "./src/main.tsx",
     output: {
-        filename: path.join(basePath, "dist/bundle.js"),
-        path: path.join(basePath, "dist")
+        filename: "./dist/bundle.js",
     },
     devtool: "source-map",
     resolve: {
@@ -26,7 +23,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(basePath, 'src/index.html'),
+            template: './src/index.html',
             hash: false,
             filename: 'index.html',
             inject: 'body',
