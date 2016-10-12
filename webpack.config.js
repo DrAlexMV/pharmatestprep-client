@@ -5,23 +5,25 @@ const debug = require('debug')('app:webpack:config')
 
 const basePath = path.resolve(__dirname);
 
-console.log(path.join(basePath, "src/main.tsx"));
+
 module.exports = {
     entry: path.join(basePath, "src/main.tsx"),
     output: {
-        filename: path.join(basePath, "dist/bundle.js"),
-        path: path.join(basePath, "dist")
+        filename: path.join(basePath, "bundle.js"),
+        path: path.join(basePath, "dist"),
+        publicPath: '/'
     },
+    context: path.join(basePath, 'src'),
     devtool: "source-map",
     resolve: {
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
     module: {
         loaders: [
-            { test: /\.tsx?$/, loader: "ts-loader" }
+            { test: /\.tsx?$/, exclude: /node_modules/, loader: 'awesome-typescript-loader' }
         ],
         preLoaders: [
-            { test: /\.js$/, loader: "source-map-loader" }
+            { test: /\.js$/, exclude: /node_modules/, loader: "source-map-loader" }
         ]
     },
     plugins: [
