@@ -1,8 +1,8 @@
 import { FlashCardPractice } from './flash_card_practice';
-import { FlashCard } from './flash_card';
+import { FlashCardFront } from './flash_card_front';
 
 
 export {
     FlashCardPractice,
-    FlashCard,
+    FlashCardFront,
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { QuizFlashCard } from './flash_card';
 
 
 interface FlashCardPracticeProps {
@@ -8,5 +9,7 @@ interface FlashCardPracticeProps {
 
 export const FlashCardPractice:
     React.StatelessComponent<FlashCardPracticeProps> = ({card}) => (
-        <div>Hello World</div>
+        <div>
+            <QuizFlashCard front='Aspirin'></QuizFlashCard>
+        </div>
     );

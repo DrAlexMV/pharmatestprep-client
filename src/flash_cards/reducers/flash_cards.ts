@@ -1,13 +1,24 @@
+import * as _ from 'lodash';
+import { Reducer, Action } from 'redux';
 import { createAction } from 'redux-actions';
 import { Observable } from 'rxjs';
 import { ActionsObservable, Epic } from 'redux-observable';
+import { PTPState } from '../../store';
 import {
     FETCH_FLASHCARDS_FOR_TOPIC,
     FLASH_CARDS_RECEIVED,
+    NEXT_CARD,
+    SHOW_CARD_BACK,
     FetchFlashCardResponse,
     FetchFlashCardByTopicAction,
     FlashCardsReceivedAction,
 } from '../actions';
+
+
+export const showCardBack = createAction<any>(SHOW_CARD_BACK);
+
+
+export const nextCard = createAction<any>(NEXT_CARD);
 
 
 const _fetchCardsByTopic = (topic: string):
@@ -28,3 +39,25 @@ export const fetchFlashCardByTopicEpic =
                 .map((res: FetchFlashCardResponse) => _flashCardsReceived(res))
             );
     };
+
+
+export interface FlashCardsState {
+    showingBack: boolean;
+}
+
+
+const initialState: FlashCardsState = {
+    showingBack: false
+};
+
+
+export const flashCards: Reducer<any> = (state: FlashCardsState = initialState,
+    action: Action) => {
+    switch (action.type) {
+        case NEXT_CARD:
+            break;
+        case SHOW_CARD_BACK:
+            return _.assign({}, state, { showingBack: true });
+    }
+    return state;
+};

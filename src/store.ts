@@ -1,9 +1,12 @@
 import { applyMiddleware, createStore, combineReducers, Store } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { makeRootReducer, makeRootEpic } from './reducers';
+import { FlashCardsState } from './flash_cards/reducers/flash_cards';
 
 
-export interface PTPState { };
+export interface PTPState {
+    flashCards: FlashCardsState;
+};
 
 
 export const makeStore = (): Store<PTPState> => {
@@ -14,4 +17,3 @@ export const makeStore = (): Store<PTPState> => {
     );
     return store;
 };
-
